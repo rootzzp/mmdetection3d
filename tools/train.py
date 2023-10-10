@@ -132,4 +132,9 @@ def main():
 
 
 if __name__ == '__main__':
+    import sys
+    sys.argv = [
+        "train.py",
+        "projects/DETR3D/configs/detr3d_r101_gridmask.py"
+    ]
     main()

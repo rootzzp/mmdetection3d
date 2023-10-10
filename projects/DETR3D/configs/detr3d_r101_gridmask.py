@@ -122,7 +122,7 @@ data_root = 'data/nuscenes/'
 test_transforms = [
     dict(
         type='RandomResize3D',
-        scale=(1600, 900),
+        scale=(800, 450),
         ratio_range=(1., 1.),
         keep_ratio=True)
 ]
@@ -175,7 +175,7 @@ train_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file='nuscenes_infos_train.pkl',
+        ann_file='nuscenes_mini_infos_train.pkl',
         pipeline=train_pipeline,
         load_type='frame_based',
         metainfo=metainfo,
@@ -196,7 +196,7 @@ val_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file='nuscenes_infos_val.pkl',
+        ann_file='nuscenes_mini_infos_val.pkl',
         load_type='frame_based',
         pipeline=test_pipeline,
         metainfo=metainfo,
@@ -211,7 +211,7 @@ test_dataloader = val_dataloader
 val_evaluator = dict(
     type='NuScenesMetric',
     data_root=data_root,
-    ann_file=data_root + 'nuscenes_infos_val.pkl',
+    ann_file=data_root + 'nuscenes_mini_infos_val.pkl',
     metric='bbox',
     backend_args=backend_args)
 test_evaluator = val_evaluator
@@ -249,7 +249,7 @@ test_cfg = dict(type='TestLoop')
 default_hooks = dict(
     checkpoint=dict(
         type='CheckpointHook', interval=1, max_keep_ckpts=1, save_last=True))
-load_from = 'ckpts/fcos3d.pth'
+# load_from = 'ckpts/fcos3d.pth'
 
 # setuptools 65 downgrades to 58.
 # In mmlab-node we use setuptools 61 but occurs NO errors
